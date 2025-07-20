@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | My Blog</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/320px-GitHub_Invertocat_Logo.svg.png" alt="">
+                <a href="https://github.com/brave98git">GitHub</a>
+            </div>
+            <div class="nav-menu">
+                <a href="/" class="nav-link">All Posts</a>
+                <a href="/new" class="nav-link btn-primary">New Post</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="error-page">
+                <div class="error-icon">🔍</div>
+                <h1>404 - Page Not Found</h1>
+                <p>The page you're looking for doesn't exist or has been moved.</p>
+                <div class="error-actions">
+                    <a href="/" class="btn btn-primary">Go Home</a>
+                    <a href="/new" class="btn btn-secondary">Create a Post</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 
+                <%= new Date().getFullYear() %> My Blog. All rights reserved.</p>
+            <p> <code>Created with 😎 By Samarth</code>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

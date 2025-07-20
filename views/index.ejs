@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/320px-GitHub_Invertocat_Logo.svg.png" alt="">
+                <a href="https://github.com/brave98git">GitHub</a>
+            </div>
+            <div class="nav-menu">
+                <a href="/" class="nav-link">All Posts</a>
+                <a href="/new" class="nav-link btn-primary">New Post</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <header class="page-header">
+                <h1>Welcome to My Blog</h1>
+                <p class="subtitle">Thoughts, ideas, and stories worth sharing</p>
+            </header>
+
+            <% if (posts.length === 0) { %>
+                <div class="empty-state">
+                    <div class="empty-icon">📝</div>
+                    <h2>No posts yet</h2>
+                    <p>Start sharing your thoughts by creating your first blog post.</p>
+                    <a href="/new" class="btn btn-primary">Write Your First Post</a>
+                </div>
+            <% } else { %>
+                <div class="posts-grid">
+                    <% posts.forEach(post => { %>
+                        <article class="post-card">
+                            <div class="post-header">
+                                <h2 class="post-title">
+                                    <a href="/posts/<%= post.id %>"><%= post.title %></a>
+                                </h2>
+                                <div class="post-meta">
+                                    <span class="post-author">By <%= post.author %></span>
+                                    <span class="post-date"><%= post.date.toLocaleDateString('en-US', { 
+                                        year: 'numeric', 
+                                        month: 'long', 
+                                        day: 'numeric' 
+                                    }) %></span>
+                                    <% if (post.updatedAt) { %>
+                                        <span class="post-updated">(Updated <%= post.updatedAt.toLocaleDateString('en-US', { 
+                                            year: 'numeric', 
+                                            month: 'short', 
+                                            day: 'numeric' 
+                                        }) %>)</span>
+                                    <% } %>
+                                </div>
+                            </div>
+                            <div class="post-excerpt">
+                                <p><%= post.excerpt %></p>
+                            </div>
+                            <div class="post-actions">
+                                <a href="/posts/<%= post.id %>" class="btn btn-secondary">Read More</a>
+                                <div class="post-controls">
+                                    <a href="/posts/<%= post.id %>/edit" class="btn btn-outline">Edit</a>
+                                    <form method="POST" action="/posts/<%= post.id %>/delete" style="display: inline;">
+                                        <button type="submit" class="btn btn-danger" 
+                                                onclick="return confirmDelete('<%= post.title %>')">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </article>
+                    <% }); %>
+                </div>
+            <% } %>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 
+                <%= new Date().getFullYear() %> My Blog. All rights reserved.</p>
+            <p> <code>Created with 😎 By Samarth</code>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function confirmDelete(postTitle) {
+            return confirm(`Are you sure you want to delete "${postTitle}"? This action cannot be undone.`);
+        }
+    </script>
+</body>
+</html>
